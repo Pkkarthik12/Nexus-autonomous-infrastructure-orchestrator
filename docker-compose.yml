@@ -72,3 +72,19 @@ services:
     depends_on:
       nats:
         condition: service_healthy
+
+  symphony:
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.symphony
+    environment:
+      SYMPHONY_HTTP_ADDR: "0.0.0.0:8765"
+      SYMPHONY_WEB_DIR: /srv/symphony/web
+      SYMPHONY_DEMO: "true"
+      NATS_URL: nats://nats:4222
+      SYMPHONY_ANOMALY_URL: http://anomaly-scorer:8090
+    ports:
+      - "8765:8765"
+    depends_on:
+      nats:
+        condition: service_healthy
