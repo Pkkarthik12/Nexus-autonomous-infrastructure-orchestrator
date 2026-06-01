@@ -1,0 +1,9 @@
+{
+  "name": "nexus-events",
+  "subjects": ["nexus.>"],
+  "retention": "limits",
+  "max_age": 604800000000000,
+  "storage": "file",
+  "num_replicas": 1,
+  "description": "Nexus Orchestrator event bus (NATS JetStream)"
+}

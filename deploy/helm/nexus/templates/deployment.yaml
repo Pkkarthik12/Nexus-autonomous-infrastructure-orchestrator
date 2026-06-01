@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-core
+  labels:
+    app: nexus-core
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: nexus-core
+  template:
+    metadata:
+      labels:
+        app: nexus-core
+    spec:
+      containers:
+        - name: nexus-core
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.httpPort }}
+            - containerPort: {{ .Values.service.metricsPort }}
+          env:
+            - name: NATS_URL
+              value: {{ .Values.nats.url | quote }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

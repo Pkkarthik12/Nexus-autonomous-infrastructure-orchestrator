@@ -1,0 +1,18 @@
+[package]
+name = "agent-chaos"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "agent-chaos"
+path = "src/main.rs"
+
+[dependencies]
+agent-common = { path = "../agent-common" }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow = { workspace = true }
+clap = { workspace = true }
+serde_json = { workspace = true }

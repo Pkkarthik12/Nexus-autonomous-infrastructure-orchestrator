@@ -1,0 +1,92 @@
+# Nexus Orchestrator — example configuration
+# Copy to config/local.yaml and customize for your environment.
+
+server:
+  http_addr: "0.0.0.0:8080"
+  grpc_addr: "0.0.0.0:50051"
+  metrics_addr: "0.0.0.0:9091"
+
+nats:
+  url: "nats://127.0.0.1:4222"
+  stream: "nexus-events"
+  subjects:
+    discovery: "nexus.discovery.>"
+    anomalies: "nexus.anomalies.>"
+    plans: "nexus.plans.>"
+    execution: "nexus.execution.>"
+    chaos: "nexus.chaos.>"
+    feedback: "nexus.feedback.>"
+
+state_store:
+  raft:
+    bind_addr: "0.0.0.0:7000"
+    peers: []
+  crdt:
+    sync_interval_ms: 500
+
+observability:
+  otel_endpoint: "http://127.0.0.1:4317"
+  service_name: "nexus-core"
+  ebpf:
+    enabled: false
+    bpf_path: "/opt/nexus/probes"
+  anomaly_scorer_url: "http://127.0.0.1:8090"
+
+agents:
+  scout:
+    interval_secs: 30
+    targets: ["production", "staging", "edge"]
+  sentinel:
+    window_secs: 300
+    zscore_threshold: 3.0
+  planner:
+    max_concurrent_remediations: 5
+  executor:
+    rollout_strategy: "canary"
+    canary_percent: 10
+  chaos:
+    enabled: false
+    schedule: "0 3 * * 0"  # weekly Sunday 03:00 UTC
+
+adapters:
+  kubernetes:
+    enabled: true
+    in_cluster: false
+    kubeconfig: "~/.kube/config"
+    namespaces: ["default", "nexus-system"]
+  cloud:
+    enabled: false
+    providers:
+      aws:
+        region: "us-east-1"
+      gcp:
+        project: ""
+      azure:
+        subscription: ""
+  bare_metal:
+    enabled: false
+    ssh_user: "ops"
+    ipmi_enabled: true
+  edge:
+    enabled: true
+    wasm_runtime: "wasmtime"
+    module_dir: "./adapters/edge/modules"
+
+targets:
+  production:
+    kind: "kubernetes"
+    regions: ["us-east-1", "eu-west-1"]
+    labels: { env: "production", tier: "critical" }
+  staging:
+    kind: "kubernetes"
+    regions: ["us-east-1"]
+    labels: { env: "staging" }
+  edge:
+    kind: "wasm"
+    regions: ["field"]
+    labels: { env: "edge", tier: "iot" }
+
+feedback_loop:
+  enabled: true
+  reconcile_interval_secs: 15
+  drift_threshold: 0.05

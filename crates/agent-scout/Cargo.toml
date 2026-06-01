@@ -1,0 +1,19 @@
+[package]
+name = "agent-scout"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "agent-scout"
+path = "src/main.rs"
+
+[dependencies]
+agent-common = { path = "../agent-common" }
+orchestrator-api = { path = "../orchestrator-api" }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow = { workspace = true }
+clap = { workspace = true }
+serde_json = { workspace = true }

@@ -1,0 +1,33 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/your-org/nexus-core
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+
+nats:
+  url: nats://nats.nexus-system.svc:4222
+
+service:
+  httpPort: 8080
+  metricsPort: 9091
+
+agents:
+  scout:
+    enabled: true
+  sentinel:
+    enabled: true
+  planner:
+    enabled: true
+  executor:
+    enabled: true
+  chaos:
+    enabled: false
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 250m
+    memory: 256Mi

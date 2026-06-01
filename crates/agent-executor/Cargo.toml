@@ -1,0 +1,20 @@
+[package]
+name = "agent-executor"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "agent-executor"
+path = "src/main.rs"
+
+[dependencies]
+agent-common = { path = "../agent-common" }
+orchestrator-api = { path = "../orchestrator-api" }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow = { workspace = true }
+clap = { workspace = true }
+futures-util = "0.3"
+serde_json = { workspace = true }

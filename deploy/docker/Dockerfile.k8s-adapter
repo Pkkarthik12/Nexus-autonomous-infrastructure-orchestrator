@@ -1,0 +1,11 @@
+FROM golang:1.22-bookworm AS builder
+WORKDIR /build
+COPY adapters/k8s/go.mod adapters/k8s/go.sum* ./adapters/k8s/
+WORKDIR /build/adapters/k8s
+RUN go mod download 2>/dev/null || true
+COPY adapters/k8s ./
+RUN CGO_ENABLED=0 go build -o /k8s-adapter ./cmd/adapter
+
+FROM gcr.io/distroless/static-debian12
+COPY --from=builder /k8s-adapter /k8s-adapter
+ENTRYPOINT ["/k8s-adapter"]

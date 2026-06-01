@@ -1,0 +1,15 @@
+[package]
+name = "state-store"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+orchestrator-api = { path = "../orchestrator-api" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+uuid = { workspace = true }
+thiserror = { workspace = true }
+chrono = { workspace = true }

@@ -1,0 +1,55 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Go
+adapters/k8s/bin/
+*.exe
+*.test
+vendor/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+
+# Observability / runtime
+/data/
+/logs/
+*.log
+
+# WASM / build artifacts
+adapters/edge/pkg/
+*.wasm
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Release artifacts
+*.zip
+
+# Docker
+.docker/
+
+# Local config overrides
+config/local.yaml

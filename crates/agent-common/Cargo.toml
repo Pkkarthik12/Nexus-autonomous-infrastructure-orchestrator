@@ -1,0 +1,17 @@
+[package]
+name = "agent-common"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+orchestrator-api = { path = "../orchestrator-api" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_yaml = { workspace = true }
+tokio = { workspace = true }
+async-nats = { workspace = true }
+tracing = { workspace = true }
+anyhow = { workspace = true }
+config = { workspace = true }
+clap = { workspace = true }

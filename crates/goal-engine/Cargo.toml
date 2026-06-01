@@ -1,0 +1,12 @@
+[package]
+name = "goal-engine"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+orchestrator-api = { path = "../orchestrator-api" }
+serde = { workspace = true }
+tracing = { workspace = true }
+uuid = { workspace = true }
+thiserror = { workspace = true }

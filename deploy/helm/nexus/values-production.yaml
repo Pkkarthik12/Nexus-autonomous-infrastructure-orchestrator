@@ -1,0 +1,14 @@
+replicaCount: 3
+
+agents:
+  chaos:
+    enabled: false
+
+feedback_loop:
+  reconcile_interval_secs: 10
+  drift_threshold: 0.03
+
+resources:
+  limits:
+    cpu: 2000m
+    memory: 2Gi

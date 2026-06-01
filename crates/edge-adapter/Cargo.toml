@@ -1,0 +1,12 @@
+[package]
+name = "edge-adapter"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+async-trait = { workspace = true }
+serde = { workspace = true }
+tracing = { workspace = true }
+thiserror = { workspace = true }
+wasmtime = { workspace = true }
