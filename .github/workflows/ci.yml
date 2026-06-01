@@ -33,6 +33,8 @@ jobs:
           go-version: "1.22"
       - name: Test K8s adapter
         working-directory: adapters/k8s
+        env:
+          GOWORK: off
         run: go test ./...
 
   python:

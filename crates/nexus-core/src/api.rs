@@ -7,7 +7,6 @@ use goal_engine::GoalEngine;
 use orchestrator_api::{Intent, SubmitIntentResponse, SystemState};
 use state_store::StateStore;
 use std::sync::Arc;
-use uuid::Uuid;
 
 #[derive(Clone)]
 pub struct ApiState {
