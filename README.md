@@ -29,6 +29,17 @@
 | **Adapters** | K8s, Cloud, Bare metal, Edge | Go controller, multi-cloud SDKs, SSH/IPMI, Wasmtime |
 | **Targets** | Production, Staging, Edge/IoT | Multi-region clusters, dev envs, field nodes |
 
+## Symphony of the Stack
+
+**[Symphony of the Stack](symphony/README.md)** sonifies your cluster — request rate becomes tempo, latency becomes pitch, chaos hits like a drum. Open the UI, click *Start audio*, and hear production breathe.
+
+```bash
+cargo run -p symphony-bridge
+# → http://localhost:8765
+```
+
+Or with Docker: `docker compose up -d symphony`
+
 ## Quick start
 
 ### Prerequisites
@@ -59,6 +70,7 @@ curl -X POST http://localhost:8080/v1/intents \
 
 ```
 nexus-orchestrator/
+├── symphony/               # Symphony of the Stack (UI + docs)
 ├── crates/                 # Rust control plane, agents, adapters
 ├── adapters/k8s/           # Go Kubernetes controller
 ├── observability/          # eBPF, OTel, ML scorer, NATS configs
@@ -73,6 +85,7 @@ nexus-orchestrator/
 - [Architecture](docs/architecture.md)
 - [Getting started](docs/getting-started.md)
 - [Agent mesh](docs/agents.md)
+- [Symphony of the Stack](symphony/README.md)
 - [Contributing](CONTRIBUTING.md)
 
 ## Push to GitHub

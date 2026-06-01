@@ -1,4 +1,4 @@
-.PHONY: all build test lint fmt docker-up docker-down proto clean
+.PHONY: all build test lint fmt docker-up docker-down proto clean symphony
 
 all: build
 
@@ -29,6 +29,9 @@ docker-up:
 
 docker-down:
 	docker compose down -v
+
+symphony:
+	cargo run -p symphony-bridge --release
 
 clean:
 	cargo clean
